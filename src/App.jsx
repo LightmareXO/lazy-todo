@@ -3,18 +3,16 @@ import './App.css'
 import TaskList from './components/TaskList/TaskList';
 import { uuidv7 } from 'uuidv7';
 import Sidebar from './components/Sidebar/Sidebar';
+import AddTaskButton from './components/AddTaskButton';
 
 function App() {
 	const [tasks, setTasks] = useState([
 		{ id: uuidv7(), name: 'test task'},
 	])
-	const [taskName, setTaskName] = useState('')
 
-
-	const addTask = () => {
+	const addTask = (taskName) => {
 		if (taskName.trim() === '') return
 		setTasks([...tasks, { id: uuidv7(), name: taskName}])
-		setTaskName('')
 	}
 
 	const deleteTask = (id) => {
@@ -25,31 +23,12 @@ function App() {
 		<div className="flex min-h-screen">
 			<Sidebar/>
 			<div className='flex-1 p-4'>
-				<input 
-					className='border'
-					type="text"
-					value={taskName}
-					onChange={(e) => {setTaskName(e.target.value)}}
-					onKeyDown={(e) => {
-						if (e.key === 'Enter') {
-							addTask()
-						}
-					}}
-				/>
-				<button
-					className='testbtn'
-					onClick={() => {
-						addTask()
-					}}
-				>
-					add
-				</button>
-
+				
 				<div>remain: {tasks.length}</div>
 
 				<TaskList tasks={tasks} deleteTask={deleteTask}/>
 
-				
+				<AddTaskButton onAddTask={addTask}/>
 			</div>
 		</div>
 	)
