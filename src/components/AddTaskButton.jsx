@@ -6,6 +6,7 @@ Modal.setAppElement('#root')
 function AddTaskButton({ onAddTask }) {
   const [isOpen, setIsOpen] = useState(false)
   const [taskName, setTaskName] = useState('')
+  const [taskDue, setTaskDue] = useState('2026-06-01') 
 
   const closeModal = () => {
     setIsOpen(false)
@@ -16,9 +17,11 @@ function AddTaskButton({ onAddTask }) {
     e.preventDefault()
 
     const trimmedTaskName = taskName.trim()
+    const trimmedTaskDue = taskDue.trim()
     if (trimmedTaskName === '') return
+    if (trimmedTaskDue === '') return
 
-    onAddTask(trimmedTaskName)
+    onAddTask(trimmedTaskName, trimmedTaskDue)
     closeModal()
   }
 
@@ -48,6 +51,14 @@ function AddTaskButton({ onAddTask }) {
               onChange={(e) => setTaskName(e.target.value)}
               autoFocus
               placeholder='例: 数学の課題'
+            />
+          </div>
+
+          <div>
+            <input
+              className="mt-2 w-full rounded-md border border-gray-300 px-3 py-2 outline-none focus:border-gray-700"
+              type="date"
+              onChange={(e) => setTaskDue(e.target.value)}
             />
           </div>
 

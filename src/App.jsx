@@ -7,12 +7,12 @@ import AddTaskButton from './components/AddTaskButton';
 
 function App() {
 	const [tasks, setTasks] = useState([
-		{ id: uuidv7(), name: 'test task'},
+		{ id: uuidv7(), name: 'test task', due: '2026-06-01' },
 	])
 
-	const addTask = (taskName) => {
+	const addTask = (taskName, taskDue) => {
 		if (taskName.trim() === '') return
-		setTasks([...tasks, { id: uuidv7(), name: taskName}])
+		setTasks([...tasks, { id: uuidv7(), name: taskName, due: taskDue }])
 	}
 
 	const deleteTask = (id) => {

@@ -5,6 +5,7 @@ const Task = ({task, deleteTask}) => {
       <div className="flex items-center">
         <i className=""></i>
         <span className="w-30">{task.name}</span>
+        <span className="w-30">{task.due}</span>
         <button className="testbtn" onClick={() => {
           deleteTask(task.id)
         }}>
