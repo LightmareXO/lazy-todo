@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import TaskList from './components/TaskList/TaskList';
 import { uuidv7 } from 'uuidv7';
+import Sidebar from './components/Sidebar/Sidebar';
 
 function App() {
 	const [tasks, setTasks] = useState([
@@ -22,6 +23,7 @@ function App() {
 
 	return (
 		<div className="flex min-h-screen">
+			<Sidebar/>
 			<div className='flex-1 p-4'>
 				<input 
 					className='border'
