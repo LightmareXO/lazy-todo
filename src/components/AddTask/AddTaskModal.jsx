@@ -3,14 +3,14 @@ import Modal from 'react-modal'
 
 Modal.setAppElement('#root')
 
-function AddTaskButton({ onAddTask }) {
-  const [isOpen, setIsOpen] = useState(false)
+function AddTaskModal({ onAddTask, isOpenModal, onCloseModal }) {
   const [taskName, setTaskName] = useState('')
   const [taskDue, setTaskDue] = useState('2026-06-01') 
 
   const closeModal = () => {
-    setIsOpen(false)
     setTaskName('')
+    setTaskDue('2026-06-01')
+    onCloseModal()
   }
 
   const handleSubmit = (e) => {
@@ -27,16 +27,8 @@ function AddTaskButton({ onAddTask }) {
 
   return (
     <>
-      <button
-        type="button"
-        className="fixed right-6 bottom-6 flex h-14 w-14 items-center justify-center rounded-full bg-gray-800 text-3xl leading-none text-white shadow-lg hover:bg-gray-700 active:bg-gray-900"
-        onClick={() => setIsOpen(true)}
-      >
-        +
-      </button>
-
       <Modal
-        isOpen={isOpen}
+        isOpen={isOpenModal}
         onRequestClose={closeModal}
         className="mx-4 w-full max-w-md rounded-lg bg-white p-6 shadow-xl outline-none"
         overlayClassName="fixed inset-0 z-50 flex items-center justify-center bg-black/40"
@@ -83,4 +75,4 @@ function AddTaskButton({ onAddTask }) {
   )
 }
 
-export default AddTaskButton
+export default AddTaskModal
