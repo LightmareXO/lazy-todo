@@ -33,10 +33,15 @@ function App() {
 			<Sidebar/>
 			<div className='flex-1 p-4'>
 				
-				<div>remain: {tasks.filter((task) => !task.completed).length}</div>
+				<div>
+					remain: {tasks.filter((task) => !task.completed).length}
+					<TaskList tasks={tasks.filter((task) => !task.completed)} deleteTask={deleteTask} toggleTask={toggleTask}/>
+				</div>
 
-				<TaskList tasks={tasks} deleteTask={deleteTask} toggleTask={toggleTask}/>
-
+				<div className='my-4'>
+					completed
+					<TaskList tasks={tasks.filter((task) => task.completed)} deleteTask={deleteTask} toggleTask={toggleTask}/>
+				</div>
 				
 
 				<AddTaskButton onOpen={openModal}/>
