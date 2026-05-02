@@ -9,13 +9,13 @@ import AddTaskModal from './components/AddTask/AddTaskModal';
 
 function App() {
 	const [tasks, setTasks] = useState([
-		{ id: uuidv7(), name: 'test task', due: '2026-06-01' },
+		{ id: uuidv7(), name: 'test task', dueDate: '2026-06-01', dueTime: '12:00' },
 	])
 	const [isOpenModal, setIsOpenModal] = useState(false)
 
-	const addTask = (taskName, taskDue) => {
+	const addTask = (taskName, taskDueDate, taskDueTime) => {
 		if (taskName.trim() === '') return
-		setTasks([...tasks, { id: uuidv7(), name: taskName, due: taskDue }])
+		setTasks([...tasks, { id: uuidv7(), name: taskName, dueDate: taskDueDate, dueTime: taskDueTime }])
 	}
 
 	const deleteTask = (id) => {

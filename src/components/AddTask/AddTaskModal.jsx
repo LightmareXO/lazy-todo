@@ -5,11 +5,12 @@ Modal.setAppElement('#root')
 
 function AddTaskModal({ onAddTask, isOpenModal, onCloseModal }) {
   const [taskName, setTaskName] = useState('')
-  const [taskDue, setTaskDue] = useState('2026-06-01') 
+  const [taskDueDate, setTaskDueDate] = useState('') 
+  const [taskDueTime, setTaskDueTime] = useState('')
 
   const closeModal = () => {
     setTaskName('')
-    setTaskDue('2026-06-01')
+    setTaskDueDate('')
     onCloseModal()
   }
 
@@ -17,11 +18,13 @@ function AddTaskModal({ onAddTask, isOpenModal, onCloseModal }) {
     e.preventDefault()
 
     const trimmedTaskName = taskName.trim()
-    const trimmedTaskDue = taskDue.trim()
-    if (trimmedTaskName === '') return
-    if (trimmedTaskDue === '') return
+    const trimmedTaskDue = taskDueDate.trim()
+    const trimmedTaskTime = taskDueTime.trim()
+    if (trimmedTaskName === '' || trimmedTaskDue === '' || trimmedTaskTime === '') {
+        return
+    }
 
-    onAddTask(trimmedTaskName, trimmedTaskDue)
+    onAddTask(trimmedTaskName, trimmedTaskDue, trimmedTaskTime)
     closeModal()
   }
 
@@ -48,11 +51,18 @@ function AddTaskModal({ onAddTask, isOpenModal, onCloseModal }) {
 
           <div>
             <input
-              className="mt-2 w-full rounded-md border border-gray-300 px-3 py-2 outline-none focus:border-gray-700"
+              className="mt-2 w-40 rounded-md border border-gray-300 px-3 py-2 outline-none focus:border-gray-700"
               type="date"
-              onChange={(e) => setTaskDue(e.target.value)}
+              onChange={(e) => setTaskDueDate(e.target.value)}
+            />
+            <input
+              className="mt-2 ml-2 w-40 rounded-md border border-gray-300 px-3 py-2 outline-none focus:border-gray-700"
+              type="time"
+              onChange={(e) => setTaskDueTime(e.target.value)}
             />
           </div>
+
+          
 
           <div className="flex justify-end gap-2">
             <button
