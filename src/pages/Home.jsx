@@ -1,4 +1,3 @@
-import Sidebar from "../components/Sidebar/Sidebar";
 import TaskList from "../components/TaskList/TaskList";
 import AddTaskButton from "../components/AddTask/AddTaskButton";
 import AddTaskModal from "../components/AddTask/AddTaskModal";
@@ -28,7 +27,6 @@ function Home() {
 	const closeModal = () => setIsOpenModal(false)
   return (
     <div className="flex min-h-screen">
-      <Sidebar />
       <div className="flex-1 p-4">
         <div>
           remain: {tasks.filter((task) => !task.completed).length}
