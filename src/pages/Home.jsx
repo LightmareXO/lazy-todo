@@ -1,9 +1,9 @@
-import TaskList from "../components/TaskList/TaskList";
 import AddTaskButton from "../components/AddTask/AddTaskButton";
 import AddTaskModal from "../components/AddTask/AddTaskModal";
 import SortButton from "../components/SortButton";
 import { useState } from "react";
 import { useOutletContext } from "react-router-dom";
+import Task from "../components/TaskList/Task";
 
 
 function Home() {
@@ -18,20 +18,12 @@ function Home() {
       <div className="flex-1 p-4">
         <div className="h-40 overflow-y-auto">
           remain: {sortedTasks.filter((task) => !task.completed).length}
-          <TaskList
-            tasks={sortedTasks.filter((task) => !task.completed)}
-            deleteTask={deleteTask}
-            toggleTask={toggleTask}
-          />
-        </div>
-
-        <div className="my-4 h-30">
-          completed
-          <TaskList
-            tasks={sortedTasks.filter((task) => task.completed)}
-            deleteTask={deleteTask}
-            toggleTask={toggleTask}
-          />
+          <h1>Next:</h1>
+          { sortedTasks.filter((task) => !task.completed).length > 0 ?
+            <Task task={sortedTasks.filter((task) => !task.completed)[0]} deleteTask={deleteTask} toggleTask={toggleTask}/>
+            :
+            <p>All completed!</p>
+          }
         </div>
 
         <AddTaskButton onOpen={openModal} />
