@@ -17,7 +17,7 @@ function Sidebar() {
               onClick={() => navigate(value.path)}
             >
               <i className={value.icon} />
-              <span className='ml-5 text-lg'>{value.title}</span>
+              <span className='ml-5 text-lg font-bold'>{value.title}</span>
             </li>
           )
         })}
