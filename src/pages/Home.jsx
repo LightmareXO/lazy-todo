@@ -66,7 +66,9 @@ function Home() {
           </div>
         ) : (
           <div className="mt-6 max-w-xl rounded-lg border border-gray-300 bg-white p-6 shadow">
-            <h1 className="text-3xl font-bold text-gray-900">All completed!</h1>
+            <h1 className="text-3xl font-bold text-gray-900">
+              All completed!
+            </h1>
           </div>
         )}
 

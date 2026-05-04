@@ -1,8 +1,9 @@
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { SidebarData } from './SidebarData'
 
 function Sidebar() {
   const navigate = useNavigate()
+  const location = useLocation()
 
   return (
     <div className='w-50 h-screen bg-gray-200 text-gray-800 select-none'>
@@ -12,8 +13,10 @@ function Sidebar() {
       </div>
       <ul className='m-2 space-y-2'>
         {SidebarData.map((value, key) => {
+          const isActive = location.pathname === value.path
+
           return (
-            <li key={key} className='flex px-2 py-2 hover:bg-gray-300 active:bg-gray-400 rounded-md cursor-pointer'
+            <li key={key} className={`flex px-2 py-2 rounded-md cursor-pointer ${isActive ? 'bg-gray-300 active:bg-gray-300' : 'hover:bg-gray-300 active:bg-gray-400'}`}
               onClick={() => navigate(value.path)}
             >
               <i className={value.icon} />
