@@ -6,8 +6,9 @@ function Sidebar() {
 
   return (
     <div className='w-50 h-screen bg-gray-200 text-gray-800 select-none'>
-      <div className='text-center p-4 border-b border-gray-500 '>
-        LAZY TODO
+      <div className="flex items-center gap-4 border-b border-gray-500 p-5">
+        <img src="/favicon.svg" className="h-8 w-8" />
+        <span className="font-bold tracking-wide">LAZY TODO</span>
       </div>
       <ul className='m-2 space-y-2'>
         {SidebarData.map((value, key) => {
