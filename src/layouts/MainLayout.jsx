@@ -1,16 +1,44 @@
 import { Outlet } from "react-router-dom"
 import Sidebar from "../components/Sidebar/Sidebar"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { uuidv7 } from 'uuidv7'
 
 function MainLayout() {
-	const [tasks, setTasks] = useState(
-		[
+	const [tasks, setTasks] = useState(() => {
+		const savedTasks = JSON.parse(localStorage.getItem('tasks'))
+		
+		if (savedTasks) {
+			return JSON.parse(localStorage.getItem('tasks'))
+		}
+
+		return [
 			{ id: uuidv7(), name: 'test task1', dueDate: '2026-06-01', dueTime: '12:00', completed: false },
 			{ id: uuidv7(), name: 'test task2', dueDate: '2026-06-01', dueTime: '10:00', completed: false },
 			{ id: uuidv7(), name: 'test task3', dueDate: '2026-05-29', dueTime: '12:00', completed: false },
-		]
+			]
+		}
 	)
+
+	const [settings, setSettings] = useState(() => {
+		const savedSettings = JSON.parse(localStorage.getItem('settings'))
+		
+			if (savedSettings) {
+				return JSON.parse(localStorage.getItem('settings'))
+			}
+			
+			return {sortMode: 'created'}
+		}
+	);
+
+	const sortMode = settings.sortMode;
+
+	useEffect(() => {
+		localStorage.setItem('tasks', JSON.stringify(tasks))
+	}, [tasks])
+
+	useEffect(() => {
+		localStorage.setItem('settings', JSON.stringify(settings))
+	}, [settings])
 
 	const addTask = (taskName, taskDueDate, taskDueTime) => {
 		if (taskName.trim() === '') return
@@ -24,10 +52,10 @@ function MainLayout() {
 		setTasks(tasks.map((task) => task.id === id ? { ...task, completed: !task.completed } : task))
 	}
 
-	const [sortMode, setSortMode] = useState('created');
-
 	const toggleSortMode = () => {
-		setSortMode((prev) => prev === 'created' ? 'dueDate' : 'created')
+		setSettings((prev) => {
+			return { ...prev, sortMode: prev.sortMode === 'created' ? 'dueDate' : 'created' }		
+		})
 	}
 
 	const sortedTasks = [...tasks].sort((a, b) => {
