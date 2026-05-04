@@ -6,6 +6,10 @@ import Completed from './pages/Completed';
 import Settings from './pages/Settings';
 import MainLayout from './layouts/MainLayout';
 
+// todo: dark mode
+// 重要度
+// タスクの編集
+// ケバブメニュー
 
 function App() {
 	return (

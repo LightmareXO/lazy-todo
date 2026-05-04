@@ -40,11 +40,15 @@ function MainLayout() {
 		return 0
 	})
 
+	const editTask = (id, taskName, taskDueDate, taskDueTime) => {
+		setTasks(tasks.map((task) => task.id === id ? { ...task, name: taskName, dueDate: taskDueDate, dueTime: taskDueTime } : task))
+	}
+
   return (
     <div className="flex min-h-screen">
       <Sidebar />
       <main className="flex-1 p-4">
-        <Outlet context={{ tasks, addTask, deleteTask, toggleTask, sortedTasks, sortMode, toggleSortMode }}/>
+        <Outlet context={{ tasks, addTask, deleteTask, editTask, toggleTask, sortedTasks, sortMode, toggleSortMode }}/>
       </main>
     </div>
   )

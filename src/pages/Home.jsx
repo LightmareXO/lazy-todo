@@ -14,7 +14,7 @@ function Home() {
 	const openModal = () => setIsOpenModal(true)
 	const closeModal = () => setIsOpenModal(false)
   return (
-    <div className="flex min-h-screen">
+    <div>
       <div className="flex-1 p-4">
         <div className="h-40 overflow-y-auto">
           remain: {sortedTasks.filter((task) => !task.completed).length}
