@@ -19,6 +19,7 @@ function Home() {
   const closeModal = () => setIsOpenModal(false);
 
   const nextTask = sortedTasks.filter((task) => !task.completed)[0];
+  const nextNextTask = sortedTasks.filter((task) => !task.completed)[1];
 
   const handleDelete = (task) => {
     const shouldDelete = window.confirm(`「${task.name}」を削除しますか？`)
@@ -29,12 +30,13 @@ function Home() {
   }
   return (
     <div>
-      <div className="p-4 space-y-40">
+      <SortButton sortMode={sortMode} toggleSortMode={toggleSortMode} />
+      <div className="py-4 space-y-40">
         {nextTask ? (
           <div className="relative flex justify-end rounded-lg border border-gray-300 bg-white p-6 shadow">
 
             <div className="">
-              <p className="text-sm text-gray-500">Next Task:</p>
+              <p className="text-sm text-gray-500">Next task:</p>
 
               <h1 className="mt-2 text-3xl font-bold text-gray-900">
                 {nextTask.name}
@@ -65,15 +67,21 @@ function Home() {
 
           </div>
         ) : (
-          <div className="mt-6 max-w-xl rounded-lg border border-gray-300 bg-white p-6 shadow">
-            <h1 className="text-3xl font-bold text-gray-900">
+          <div className="rounded-lg border border-gray-300 bg-white p-6 shadow">
+            <h1 className="text-3xl text-center font-bold text-gray-900">
               All completed!
             </h1>
           </div>
         )}
-
-        <SortButton sortMode={sortMode} toggleSortMode={toggleSortMode} />
       </div>
+
+      { nextTask &&
+        <div className="flex justify-end text-gray-400">
+          <span>Next up:</span>
+          <span className="mx-2">{nextNextTask ? nextNextTask.name : "None"}</span>
+        </div>
+      }
+      
       <AddTaskButton onOpen={openModal} />
       <AddTaskModal
         onAddTask={addTask}
