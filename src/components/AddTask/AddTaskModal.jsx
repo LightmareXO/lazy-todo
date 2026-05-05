@@ -87,7 +87,7 @@ function AddTaskModal({ onAddTask, isOpenModal, onCloseModal }) {
               value={taskName}
               onChange={(e) => setTaskName(e.target.value)}
               autoFocus
-              placeholder='例: 数学の課題'
+              placeholder='example: math homework'
             />
           </div>
 
