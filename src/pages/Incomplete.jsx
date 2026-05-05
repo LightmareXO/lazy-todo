@@ -18,8 +18,11 @@ function Incomplete() {
 
   return (
     <>
+      <h1 className="text-3xl">Incomplete</h1>
+      <div className="py-2 border-b border-gray-400">
+        <SortButton sortMode={sortMode} toggleSortMode={toggleSortMode} />
+      </div>
       <div>
-        <h1>Incomplete</h1>
         <TaskList
           tasks={sortedTasks.filter((task) => !task.completed)}
           deleteTask={deleteTask}
@@ -27,7 +30,6 @@ function Incomplete() {
           setInEditing={setInEditing}
         />
       </div>
-      <SortButton sortMode={sortMode} toggleSortMode={toggleSortMode} />
 
       <EditTaskModal inEditing={inEditing} editTask={editTask} setInEditing={setInEditing}/>
 

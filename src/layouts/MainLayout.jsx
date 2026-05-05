@@ -26,7 +26,7 @@ function MainLayout() {
 				return JSON.parse(localStorage.getItem('settings'))
 			}
 			
-			return {sortMode: 'created'}
+			return {sortMode: 'dueDate'}
 		}
 	);
 
