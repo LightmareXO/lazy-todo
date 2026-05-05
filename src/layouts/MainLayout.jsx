@@ -12,9 +12,9 @@ function MainLayout() {
 		}
 
 		return [
-			{ id: uuidv7(), name: 'test task1', dueDate: '2026-06-01', dueTime: '12:00', completed: false },
-			{ id: uuidv7(), name: 'test task2', dueDate: '2026-06-01', dueTime: '10:00', completed: false },
-			{ id: uuidv7(), name: 'test task3', dueDate: '2026-05-29', dueTime: '12:00', completed: false },
+			{ id: uuidv7(), name: 'example task', dueDate: '2030-01-01', dueTime: '12:00', completed: false },
+			// { id: uuidv7(), name: 'test task2', dueDate: '2026-06-01', dueTime: '10:00', completed: false },
+			// { id: uuidv7(), name: 'test task3', dueDate: '2026-05-29', dueTime: '12:00', completed: false },
 			]
 		}
 	)
