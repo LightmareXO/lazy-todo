@@ -48,6 +48,11 @@ function MainLayout() {
 	const deleteTask = (id) => {
 		setTasks(tasks.filter((task) => task.id !== id))
 	}
+
+	const deleteCompletedTasks = () => {
+		setTasks(tasks.filter((task) => !task.completed))
+	}
+
 	const toggleTask = (id) => {
 		setTasks(tasks.map((task) => task.id === id ? { ...task, completed: !task.completed } : task))
 	}
@@ -76,7 +81,7 @@ function MainLayout() {
     <div className="flex min-h-screen">
       <Sidebar />
       <main className="flex-1 p-4">
-        <Outlet context={{ tasks, addTask, deleteTask, editTask, toggleTask, sortedTasks, sortMode, toggleSortMode }}/>
+        <Outlet context={{ tasks, addTask, deleteTask, deleteCompletedTasks, editTask, toggleTask, sortedTasks, sortMode, toggleSortMode }}/>
       </main>
     </div>
   )
