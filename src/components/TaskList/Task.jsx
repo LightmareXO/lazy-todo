@@ -41,7 +41,7 @@ const Task = ({ task, deleteTask, toggleTask, setInEditing }) => {
           <div className="ml-5 justify-end text-gray-500">{task.dueDate}</div>
           <div className="flex-1 ml-5 justify-end text-gray-500">{task.dueTime}</div>
           
-          <div ref={menuRef} className="ml-auto hover:cursor-pointer">
+          <div ref={menuRef} className="relative ml-auto hover:cursor-pointer">
             <span onClick={() => setIsMenuOpen(prev => !prev)}>
               <i className="ri-more-2-fill"></i>
             </span>
