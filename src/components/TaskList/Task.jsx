@@ -5,7 +5,7 @@ const Task = ({ task, deleteTask, toggleTask, setInEditing }) => {
   const menuRef = useRef(null)
 
   const handleDelete = () => {
-    const shouldDelete = window.confirm(`「${task.name}」を削除しますか？`)
+    const shouldDelete = window.confirm(`Delete "${task.name}"?`)
 
     if (!shouldDelete) return
 

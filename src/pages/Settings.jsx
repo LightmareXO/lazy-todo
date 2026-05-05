@@ -2,7 +2,7 @@
 function Settings() {
 
   const handleDeleteData = () => {
-    const shouldDelete = window.confirm(`全データを削除しますか？`)
+    const shouldDelete = window.confirm(`Delete all data?`)
 
     if (!shouldDelete) return
     

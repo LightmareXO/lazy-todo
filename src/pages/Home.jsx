@@ -22,7 +22,7 @@ function Home() {
   const nextNextTask = sortedTasks.filter((task) => !task.completed)[1];
 
   const handleDelete = (task) => {
-    const shouldDelete = window.confirm(`「${task.name}」を削除しますか？`)
+    const shouldDelete = window.confirm(`Delete "${task.name}"?`)
 
     if (!shouldDelete) return
 
