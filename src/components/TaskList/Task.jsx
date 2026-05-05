@@ -41,18 +41,18 @@ const Task = ({ task, deleteTask, toggleTask, setInEditing }) => {
           <div className="ml-5 justify-end text-gray-500">{task.dueDate}</div>
           <div className="flex-1 ml-5 justify-end text-gray-500">{task.dueTime}</div>
           
-          <div ref={menuRef} className="relative ml-auto hover:cursor-pointer">
+          <div ref={menuRef} className="relative ml-auto hover:cursor-pointer pr-4">
             <span onClick={() => setIsMenuOpen(prev => !prev)}>
               <i className="ri-more-2-fill"></i>
             </span>
 
             {isMenuOpen && (
-            <div className="absolute right-3 top-8 z-10 w-28 border border-gray-300 bg-white shadow">
+            <div className="absolute right-3 top-8 z-10 w-28 border rounded-md border-gray-300 bg-white shadow">
               
               {task.completed && 
                 <button
                   type="button"
-                  className="block w-full px-3 py-2 text-left hover:bg-gray-100"
+                  className="block w-full px-3 py-2 text-left hover:bg-gray-100 border-b border-gray-300"
                   onClick={() => {
                     setIsMenuOpen(false)
                     toggleTask(task.id)
@@ -64,13 +64,13 @@ const Task = ({ task, deleteTask, toggleTask, setInEditing }) => {
               
               <button
                 type="button"
-                className="block w-full px-3 py-2 text-left hover:bg-gray-100"
+                className="block w-full px-3 py-2 text-left hover:bg-gray-100 border-b border-gray-300"
                 onClick={() => {
                   setIsMenuOpen(false)
                   setInEditing(task)
                 }}
               >
-                edit
+                Edit
               </button>
 
               <button
@@ -78,7 +78,7 @@ const Task = ({ task, deleteTask, toggleTask, setInEditing }) => {
                 className="block w-full px-3 py-2 text-left text-red-400 hover:bg-gray-100"
                 onClick={handleDelete}
               >
-                delete
+                Delete
               </button>
             </div>
           )}
