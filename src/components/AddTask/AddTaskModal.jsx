@@ -37,13 +37,13 @@ function AddTaskModal({ onAddTask, isOpenModal, onCloseModal }) {
   const [taskName, setTaskName] = useState('')
   const [taskDueDate, setTaskDueDate] = useState(getTomorrowString()) 
   const [taskDueTime, setTaskDueTime] = useState('23:59')
-	const [errorMassage, setErrorMassage] = useState('')
+	const [errorMessage, setErrorMessage] = useState('')
 
   const closeModal = () => {
     setTaskName('')
     setTaskDueDate(getTomorrowString())
     setTaskDueTime('23:59')
-		setErrorMassage('')
+		setErrorMessage('')
     onCloseModal()
   }
 
@@ -54,12 +54,12 @@ function AddTaskModal({ onAddTask, isOpenModal, onCloseModal }) {
     const trimmedTaskDue = taskDueDate.trim()
     const trimmedTaskTime = taskDueTime.trim()
     if (trimmedTaskName === '' || trimmedTaskDue === '' || trimmedTaskTime === '') {
-			setErrorMassage('Please fill in all fields')
+			setErrorMessage('Please fill in all fields')
       return
     }
 
 		if (trimmedTaskDue < getTodayString() || trimmedTaskDue === getTodayString() && trimmedTaskTime < getNowString()) {
-			setErrorMassage('Please select a future date and time')
+			setErrorMessage('Please select a future date and time')
 			return
 		}
 
@@ -110,7 +110,7 @@ function AddTaskModal({ onAddTask, isOpenModal, onCloseModal }) {
             />
           </div>
 
-					{errorMassage && <p className='text-red-500'>{errorMassage}</p>}
+					{errorMessage && <p className='text-red-500'>{errorMessage}</p>}
 
           <div className="flex justify-end gap-2">
             <button

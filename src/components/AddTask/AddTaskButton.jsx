@@ -1,8 +1,3 @@
-
-import Modal from 'react-modal'
-
-Modal.setAppElement('#root')
-
 function AddTaskButton({ onOpen }) {
 
   return (
