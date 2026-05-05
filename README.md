@@ -1,18 +1,61 @@
-# React + Vite
+#### 日本語の説明は下にあります。
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# LAZY TODO
 
-Currently, two official plugins are available:
+A simple task manager focused on showing what to do next.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- Add tasks with due date and time
+- Show the only next task on the home page
+- View incomplete and completed tasks separately
+- Edit and delete tasks
+- Save tasks and settings in localStorage
+- Sort tasks by created order or due date
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+## Tech Stack
 
-Note: This will impact Vite dev & build performances.
+- React
+- React Router
+- Vite
+- Tailwind CSS
+- localStorage
 
-## Expanding the ESLint configuration
+## For Developers
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Run the app locally:
+
+```bash
+npm install
+npm run dev
+```
+# 
+
+# LAZY TODO
+
+次に何をすればよいのかにフォーカスしたシンプルなタスク管理アプリです
+
+## 特徴
+
+- 日時を指定してタスクを追加できます
+- ホームでは次にやるタスクのみが表示されます
+- 未完了タスクと完了タスクを確認できます
+- タスクの編集と削除ができます
+- タスクと設定はローカルストレージ上に保存されます
+- 作成日順と期限順でタスクの順番をソート変更できます
+
+## 技術スタック
+
+- React
+- React Router
+- Vite
+- Tailwind CSS
+- localStorage
+
+## デベロッパ向け
+
+ローカルで動かすには:
+
+```bash
+npm install
+npm run dev
