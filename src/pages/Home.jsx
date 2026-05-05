@@ -33,12 +33,12 @@ function Home() {
       <SortButton sortMode={sortMode} toggleSortMode={toggleSortMode} />
       <div className="py-4 space-y-40">
         {nextTask ? (
-          <div className="relative flex justify-end rounded-lg border border-gray-300 bg-white p-6 shadow">
+          <div className="relative grid grid-cols-[minmax(0,70%)_30%] gap-4 rounded-lg border border-gray-300 bg-white p-6 shadow">
 
-            <div className="">
+            <div className="min-w-0">
               <p className="text-sm text-gray-500">Next task:</p>
 
-              <h1 className="mt-2 text-3xl font-bold text-gray-900">
+              <h1 className="mt-2 max-w-full text-3xl font-bold text-gray-900 break-all">
                 {nextTask.name}
               </h1>
 
@@ -49,22 +49,22 @@ function Home() {
               </div>
             </div>
 
-            <div className="flex flex-auto p-8 items-center justify-end">
-              <button
-                onClick={() => toggleTask(nextTask.id)}
-                className="rounded-full border border-gray-400 px-5 py-3 hover:bg-gray-200 active:bg-gray-300"
+            <div>
+              <div className="flex h-full mr-5 items-center justify-end">
+                <button
+                  onClick={() => toggleTask(nextTask.id)}
+                  className="shrink-0 rounded-full border border-gray-400 px-5 py-3 hover:bg-gray-200 active:bg-gray-300"
+                >
+                  Done!
+                </button>
+              </div>
+              <button 
+                className="absolute top-2 right-2 hover:bg-gray-200 active:bg-gray-300 h-7 w-7 rounded-full hover:cursor-pointer" 
+                onClick={() => handleDelete(nextTask)}
               >
-                Done!
+                <i className="ri-delete-bin-line"></i>
               </button>
             </div>
-
-            <button 
-              className="absolute top-2 right-2 hover:bg-gray-200 active:bg-gray-300 h-7 w-7 rounded-full" 
-              onClick={() => handleDelete(nextTask)}
-            >
-              <i className="ri-delete-bin-line"></i>
-            </button>
-
           </div>
         ) : (
           <div className="rounded-lg border border-gray-300 bg-white p-6 shadow">
