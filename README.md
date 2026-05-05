@@ -4,6 +4,10 @@
 
 A simple task manager focused on showing what to do next.
 
+## Screenshot
+
+![LAZY TODO screenshot](./public/screenshot.png)
+
 ## Features
 
 - Add tasks with due date and time
@@ -19,7 +23,6 @@ A simple task manager focused on showing what to do next.
 - React Router
 - Vite
 - Tailwind CSS
-- localStorage
 
 ## For Developers
 
@@ -34,6 +37,10 @@ npm run dev
 # LAZY TODO
 
 次に何をすればよいのかにフォーカスしたシンプルなタスク管理アプリです
+
+## スクリーンショット
+
+![LAZY TODO screenshot](./public/screenshot.png)
 
 ## 特徴
 
@@ -50,7 +57,6 @@ npm run dev
 - React Router
 - Vite
 - Tailwind CSS
-- localStorage
 
 ## デベロッパ向け
 
