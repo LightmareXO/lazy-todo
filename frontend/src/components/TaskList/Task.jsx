@@ -13,8 +13,9 @@ const Task = ({ task, deleteTask, toggleTask, setInEditing }) => {
     setIsMenuOpen(false)
   }
 
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? "http://localhost:8080";
   async function addToGoogleTasks(task) {
-    const res = await fetch("http://localhost:8080/api/tasks/create", {
+    const res = await fetch(`${API_BASE_URL}/api/tasks/create`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -35,10 +35,10 @@ func generateState() string {
 	return rand.Text()
 }
 
-func createTaskHandler(conf *oauth2.Config) http.HandlerFunc {
+func createTaskHandler(conf *oauth2.Config, frontendURL string) http.HandlerFunc {
 	return func (w http.ResponseWriter, r *http.Request) {
 
-		w.Header().Set("Access-Control-Allow-Origin", "http://localhost:5173")
+		w.Header().Set("Access-Control-Allow-Origin", frontendURL)
 		w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
 		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 
@@ -127,6 +127,19 @@ func googleCallbackHandler(conf *oauth2.Config) http.HandlerFunc {
 		_, err = service.Tasks.Insert("@default", googleTask).Do()
 
 		fmt.Println("callback", task.Name, task.DueDate, task.DueTime);
+	
+		w.Header().Set("Content-Type", "text/html; charset=utf-8")
+
+		fmt.Fprint(w, `
+			<html>
+				<body>
+					<script>
+						window.close();
+					</script>
+					<p>completed</p>
+				</body>
+			</html>
+		`)
 	}
 }
 
@@ -135,6 +148,8 @@ func main() {
 	clientSecret := os.Getenv("GOOGLE_CLIENT_SECRET")
 	clientID := os.Getenv("GOOGLE_CLIENT_ID")
 	redirectURL := os.Getenv("GOOGLE_REDIRECT_URL")
+	frontendURL := os.Getenv("FRONTEND_URL")
+	port := os.Getenv("PORT")
 
 	conf := &oauth2.Config{
 		ClientID:     clientID,
@@ -147,8 +162,8 @@ func main() {
 	fmt.Println("clientID:", clientID)
 	fmt.Println("redirectURL:", redirectURL)
 
-	http.HandleFunc("/api/tasks/create", createTaskHandler(conf))
+	http.HandleFunc("/api/tasks/create", createTaskHandler(conf, frontendURL))
 	http.HandleFunc("/auth/google/callback", googleCallbackHandler(conf))
 
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Fatal(http.ListenAndServe(":"+port, nil))
 }
