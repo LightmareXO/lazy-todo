@@ -6,7 +6,7 @@ A simple task manager focused on showing what to do next.
 
 ## Screenshot
 
-![LAZY TODO screenshot](./public/screenshot.png)
+![LAZY TODO screenshot](./frontend/public/screenshot.png)
 
 ## Features
 
@@ -68,7 +68,7 @@ FRONTEND_URL=http://localhost:5173
 
 ## スクリーンショット
 
-![LAZY TODO screenshot](./public/screenshot.png)
+![LAZY TODO screenshot](./frontend/public/screenshot.png)
 
 ## 特徴
 
