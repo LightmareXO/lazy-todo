@@ -55,10 +55,6 @@ func createTaskHandler(conf *oauth2.Config, frontendURL string) http.HandlerFunc
 			return
 		}
 
-		fmt.Println(task.Name)
-		fmt.Println(task.DueDate)
-		fmt.Println(task.DueTime)
-
 		state := generateState()
 
 		pendingTasksMutex.Lock()
@@ -130,8 +126,6 @@ func googleCallbackHandler(conf *oauth2.Config) http.HandlerFunc {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
-
-		fmt.Println("callback", task.Name, task.DueDate, task.DueTime);
 	
 		w.Header().Set("Content-Type", "text/html; charset=utf-8")
 
