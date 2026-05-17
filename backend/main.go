@@ -146,7 +146,9 @@ func main() {
 	envLoad()
 	clientSecret := os.Getenv("GOOGLE_CLIENT_SECRET")
 	clientID := os.Getenv("GOOGLE_CLIENT_ID")
+	fmt.Println("clientID:",clientID)
 	redirectURL := os.Getenv("GOOGLE_REDIRECT_URL")
+	fmt.Println("redirectURL:", redirectURL)
 	frontendURL := os.Getenv("FRONTEND_URL")
 	port := os.Getenv("PORT")
 
