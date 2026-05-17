@@ -158,9 +158,6 @@ func main() {
 		Endpoint:     google.Endpoint,
 	}
 
-	fmt.Println("clientID:", clientID)
-	fmt.Println("redirectURL:", redirectURL)
-
 	http.HandleFunc("/api/tasks/create", createTaskHandler(conf, frontendURL))
 	http.HandleFunc("/auth/google/callback", googleCallbackHandler(conf))
 
