@@ -28,7 +28,7 @@ const Task = ({ task, deleteTask, toggleTask, setInEditing }) => {
 
     const data = await res.json();
 
-    window.location.href = data.authUrl;
+    window.open(data.authUrl, "_blank");
   }
 
   useEffect(() => {

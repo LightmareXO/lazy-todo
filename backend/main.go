@@ -13,6 +13,8 @@ import (
 
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/google"
+	"google.golang.org/api/option"
+	"google.golang.org/api/tasks/v1"
 )
 
 func envLoad() {
@@ -107,7 +109,26 @@ func googleCallbackHandler(conf *oauth2.Config) http.HandlerFunc {
 			return
 		}
 
-		_ = tok
+		client := conf.Client(r.Context(), tok)
+
+		service, err := tasks.NewService(
+			r.Context(),
+			option.WithHTTPClient(client),
+		)
+
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+
+		due := task.DueDate + "T00:00:00.000Z"
+
+		googleTask := &tasks.Task{
+			Title: task.Name,
+			Due: due,
+		}
+
+		_, err = service.Tasks.Insert("@default", googleTask).Do()
 
 		fmt.Println("callback", task.Name, task.DueDate, task.DueTime);
 	}
