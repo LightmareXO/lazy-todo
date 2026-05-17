@@ -84,7 +84,7 @@ const Task = ({ task, deleteTask, toggleTask, setInEditing }) => {
               {task.completed && 
                 <button
                   type="button"
-                  className="block w-full px-3 py-2 text-left hover:bg-gray-100 border-b border-gray-300"
+                  className="block w-full px-3 py-2 text-left hover:bg-gray-200 border-b border-gray-300 active:bg-gray-300"
                   onClick={() => {
                     setIsMenuOpen(false)
                     toggleTask(task.id)
@@ -98,7 +98,7 @@ const Task = ({ task, deleteTask, toggleTask, setInEditing }) => {
                 !task.completed && 
                 <button
                   type="button"
-                  className="block w-full px-3 py-2 hover:bg-gray-100 border-b border-gray-300"
+                  className="block w-full px-3 py-2 hover:bg-gray-200 border-b border-gray-300 active:bg-gray-300"
                   onClick={() => addToGoogleTasks(task)}
                 >
                   To Google Calendar
@@ -107,7 +107,7 @@ const Task = ({ task, deleteTask, toggleTask, setInEditing }) => {
               
               <button
                 type="button"
-                className="block w-full px-3 py-2 text-left hover:bg-gray-100 border-b border-gray-300"
+                className="block w-full px-3 py-2 text-left hover:bg-gray-200 border-b border-gray-300 active:bg-gray-300"
                 onClick={() => {
                   setIsMenuOpen(false)
                   setInEditing(task)
@@ -118,7 +118,7 @@ const Task = ({ task, deleteTask, toggleTask, setInEditing }) => {
 
               <button
                 type="button"
-                className="block w-full px-3 py-2 text-left text-red-400 hover:bg-gray-100"
+                className="block w-full px-3 py-2 text-left text-red-400 hover:bg-gray-200 active:bg-gray-300"
                 onClick={handleDelete}
               >
                 Delete
