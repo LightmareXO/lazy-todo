@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"os"
 	"sync"
+	"crypto/rand"
 
 	"github.com/joho/godotenv"
 
@@ -30,13 +31,8 @@ type TaskRequest struct {
 var pendingTasks = map[string]TaskRequest{}
 var pendingTasksMutex sync.Mutex
 
-
-
-func googleLoginHandler(conf *oauth2.Config) http.HandlerFunc {
-	return func (w http.ResponseWriter, r *http.Request) {
-		url := conf.AuthCodeURL("random-state")
-		http.Redirect(w, r, url, http.StatusTemporaryRedirect)
-	}
+func generateState() string {
+	return rand.Text()
 }
 
 func createTaskHandler(conf *oauth2.Config) http.HandlerFunc {
@@ -63,7 +59,7 @@ func createTaskHandler(conf *oauth2.Config) http.HandlerFunc {
 		fmt.Println(task.DueDate)
 		fmt.Println(task.DueTime)
 
-		state := "random-state"
+		state := generateState()
 
 		pendingTasksMutex.Lock()
 		pendingTasks[state] = task
@@ -151,9 +147,8 @@ func main() {
 	fmt.Println("clientID:", clientID)
 	fmt.Println("redirectURL:", redirectURL)
 
-	http.HandleFunc("/auth/google", googleLoginHandler(conf))
-	http.HandleFunc("/auth/google/callback", googleCallbackHandler(conf))
 	http.HandleFunc("/api/tasks/create", createTaskHandler(conf))
+	http.HandleFunc("/auth/google/callback", googleCallbackHandler(conf))
 
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
