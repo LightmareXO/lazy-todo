@@ -13,6 +13,24 @@ const Task = ({ task, deleteTask, toggleTask, setInEditing }) => {
     setIsMenuOpen(false)
   }
 
+  async function addToGoogleTasks(task) {
+    const res = await fetch("http://localhost:8080/api/tasks/create", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: task.name,
+        dueDate: task.dueDate,
+        dueTime: task.dueTime
+      }),
+    });
+
+    const data = await res.json();
+
+    window.location.href = data.authUrl;
+  }
+
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (menuRef.current && !menuRef.current.contains(e.target)) {
@@ -74,6 +92,17 @@ const Task = ({ task, deleteTask, toggleTask, setInEditing }) => {
                   Mark as incomplete
                 </button>
               }
+
+              {
+                !task.completed && 
+                <button
+                  type="button"
+                  className="block w-full px-3 py-2 hover:bg-gray-100 border-b border-gray-300"
+                  onClick={() => addToGoogleTasks(task)}
+                >
+                  To Google Calendar
+                </button>
+              }
               
               <button
                 type="button"
@@ -93,6 +122,7 @@ const Task = ({ task, deleteTask, toggleTask, setInEditing }) => {
               >
                 Delete
               </button>
+
             </div>
           )}
 
