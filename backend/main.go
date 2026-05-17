@@ -126,6 +126,11 @@ func googleCallbackHandler(conf *oauth2.Config) http.HandlerFunc {
 
 		_, err = service.Tasks.Insert("@default", googleTask).Do()
 
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+
 		fmt.Println("callback", task.Name, task.DueDate, task.DueTime);
 	
 		w.Header().Set("Content-Type", "text/html; charset=utf-8")
