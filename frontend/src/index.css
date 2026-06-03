@@ -13,7 +13,6 @@
   --font-nunito: "Nunito", sans-serif;
 }
 
-
 @layer base {
   html {
     @apply font-nunito;

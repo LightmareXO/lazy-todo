@@ -1,0 +1,9 @@
+{
+  "name": "lazy-todo-workspace",
+  "private": true,
+  "scripts": {
+    "lint": "npm --prefix frontend run lint && go -C backend vet ./...",
+    "format": "npm --prefix frontend run format && gofmt -w backend",
+    "format:check": "npm --prefix frontend run format:check && gofmt -l backend"
+  }
+}

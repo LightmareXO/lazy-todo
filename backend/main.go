@@ -2,13 +2,13 @@ package main
 
 import (
 	"context"
+	"crypto/rand"
 	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
 	"os"
 	"sync"
-	"crypto/rand"
 
 	"github.com/joho/godotenv"
 
@@ -23,7 +23,7 @@ func envLoad() {
 }
 
 type TaskRequest struct {
-	Name string `json:"name"`
+	Name    string `json:"name"`
 	DueDate string `json:"dueDate"`
 	DueTime string `json:"dueTime"`
 }
@@ -36,7 +36,7 @@ func generateState() string {
 }
 
 func createTaskHandler(conf *oauth2.Config, frontendURL string) http.HandlerFunc {
-	return func (w http.ResponseWriter, r *http.Request) {
+	return func(w http.ResponseWriter, r *http.Request) {
 
 		w.Header().Set("Access-Control-Allow-Origin", frontendURL)
 		w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
@@ -62,7 +62,7 @@ func createTaskHandler(conf *oauth2.Config, frontendURL string) http.HandlerFunc
 		pendingTasksMutex.Unlock()
 
 		url := conf.AuthCodeURL(state)
-		
+
 		w.Header().Set("Content-Type", "application/json")
 		json.NewEncoder(w).Encode(map[string]string{
 			"authUrl": url,
@@ -70,7 +70,7 @@ func createTaskHandler(conf *oauth2.Config, frontendURL string) http.HandlerFunc
 	}
 }
 func googleCallbackHandler(conf *oauth2.Config) http.HandlerFunc {
-	return func (w http.ResponseWriter, r *http.Request) {
+	return func(w http.ResponseWriter, r *http.Request) {
 		code := r.URL.Query().Get("code")
 		if code == "" {
 			http.Error(w, "no code", http.StatusBadRequest)
@@ -117,7 +117,7 @@ func googleCallbackHandler(conf *oauth2.Config) http.HandlerFunc {
 
 		googleTask := &tasks.Task{
 			Title: task.Name,
-			Due: due,
+			Due:   due,
 		}
 
 		_, err = service.Tasks.Insert("@default", googleTask).Do()
@@ -126,7 +126,7 @@ func googleCallbackHandler(conf *oauth2.Config) http.HandlerFunc {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
-	
+
 		w.Header().Set("Content-Type", "text/html; charset=utf-8")
 
 		fmt.Fprint(w, `
@@ -146,7 +146,7 @@ func main() {
 	envLoad()
 	clientSecret := os.Getenv("GOOGLE_CLIENT_SECRET")
 	clientID := os.Getenv("GOOGLE_CLIENT_ID")
-	fmt.Println("clientID:",clientID)
+	fmt.Println("clientID:", clientID)
 	redirectURL := os.Getenv("GOOGLE_REDIRECT_URL")
 	fmt.Println("redirectURL:", redirectURL)
 	frontendURL := os.Getenv("FRONTEND_URL")

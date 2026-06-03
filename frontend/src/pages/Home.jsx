@@ -25,19 +25,18 @@ function Home() {
   const nextNextTask = sortedTasks.filter((task) => !task.completed)[1];
 
   const handleDelete = (task) => {
-    const shouldDelete = window.confirm(`Delete "${task.name}"?`)
+    const shouldDelete = window.confirm(`Delete "${task.name}"?`);
 
-    if (!shouldDelete) return
+    if (!shouldDelete) return;
 
-    deleteTask(task.id)
-  }
+    deleteTask(task.id);
+  };
   return (
     <div>
       <SortButton sortMode={sortMode} toggleSortMode={toggleSortMode} />
       <div className="py-4 space-y-40">
         {nextTask ? (
           <div className="relative grid grid-cols-[minmax(0,70%)_30%] gap-4 rounded-lg border border-gray-300 bg-white p-6 shadow">
-
             <div className="min-w-0">
               <p className="text-sm text-gray-500">Next task:</p>
 
@@ -61,14 +60,14 @@ function Home() {
                   Done!
                 </button>
               </div>
-              <button 
-                className="absolute bottom-2 right-2 hover:bg-gray-200 active:bg-gray-300 h-7 w-7 rounded-full hover:cursor-pointer" 
+              <button
+                className="absolute bottom-2 right-2 hover:bg-gray-200 active:bg-gray-300 h-7 w-7 rounded-full hover:cursor-pointer"
                 onClick={() => handleDelete(nextTask)}
               >
                 <i className="ri-delete-bin-line"></i>
               </button>
-              <button 
-                className="absolute bottom-2 right-10 hover:bg-gray-200 active:bg-gray-300 h-7 w-7 rounded-full hover:cursor-pointer" 
+              <button
+                className="absolute bottom-2 right-10 hover:bg-gray-200 active:bg-gray-300 h-7 w-7 rounded-full hover:cursor-pointer"
                 onClick={() => setInEditing(nextTask)}
               >
                 <i className="ri-edit-line"></i>
@@ -84,13 +83,15 @@ function Home() {
         )}
       </div>
 
-      { nextTask &&
+      {nextTask && (
         <div className="flex justify-end text-gray-400">
           <span>Next up:</span>
-          <span className="mx-2">{nextNextTask ? nextNextTask.name : "None"}</span>
+          <span className="mx-2">
+            {nextNextTask ? nextNextTask.name : "None"}
+          </span>
         </div>
-      }
-      
+      )}
+
       <AddTaskButton onOpen={openModal} />
       <AddTaskModal
         onAddTask={addTask}

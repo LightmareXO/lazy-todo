@@ -69,26 +69,26 @@ function EditTaskForm({ task, editTask, closeModal, isCompleted }) {
           />
         </div>
 
-				{!isCompleted && 
-					<div>
-						<input
-							className="mt-2 w-40 rounded-md border border-gray-300 px-3 py-2 outline-none focus:border-gray-700"
-							type="date"
-							min={getTodayString()}
-							value={taskDueDate}
-							onChange={(e) => setTaskDueDate(e.target.value)}
-							required
-						/>
-						<input
-							className="mt-2 ml-2 w-40 rounded-md border border-gray-300 px-3 py-2 outline-none focus:border-gray-700"
-							type="time"
-							value={taskDueTime}
-							min={taskDueDate === getTodayString() ? getNowString() : "00:00"}
-							onChange={(e) => setTaskDueTime(e.target.value)}
-							required
-						/>
-					</div>
-				}
+        {!isCompleted && (
+          <div>
+            <input
+              className="mt-2 w-40 rounded-md border border-gray-300 px-3 py-2 outline-none focus:border-gray-700"
+              type="date"
+              min={getTodayString()}
+              value={taskDueDate}
+              onChange={(e) => setTaskDueDate(e.target.value)}
+              required
+            />
+            <input
+              className="mt-2 ml-2 w-40 rounded-md border border-gray-300 px-3 py-2 outline-none focus:border-gray-700"
+              type="time"
+              value={taskDueTime}
+              min={taskDueDate === getTodayString() ? getNowString() : "00:00"}
+              onChange={(e) => setTaskDueTime(e.target.value)}
+              required
+            />
+          </div>
+        )}
 
         {errorMassage && <p className="text-red-500">{errorMassage}</p>}
 

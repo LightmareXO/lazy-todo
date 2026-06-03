@@ -17,9 +17,15 @@ export default function EditTaskModal({ inEditing, editTask, setInEditing }) {
           className="mx-4 w-full max-w-md rounded-lg bg-white p-6 shadow-xl outline-none"
           overlayClassName="fixed inset-0 z-50 flex items-center justify-center bg-black/40"
         >
-          {inEditing && 
-            <EditTaskForm key={inEditing.id} editTask={editTask} task={inEditing} closeModal={closeModal} isCompleted={inEditing.completed}/>
-          }
+          {inEditing && (
+            <EditTaskForm
+              key={inEditing.id}
+              editTask={editTask}
+              task={inEditing}
+              closeModal={closeModal}
+              isCompleted={inEditing.completed}
+            />
+          )}
         </Modal>
       </>
     </div>
