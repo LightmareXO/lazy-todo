@@ -135,6 +135,35 @@ If PowerShell blocks `npm`, use `npm.cmd`.
 npm.cmd run lint
 ```
 
+## CI/CD
+
+GitHub Actions runs CI on pushes to `main` and on pull requests.
+
+CI checks:
+
+- frontend lint
+- frontend build
+- frontend test
+- backend `go test`
+- backend `gofmt` check
+- backend `go vet`
+- backend build
+
+After CI succeeds and the pull request is merged into `main`, Vercel and Render deploy automatically from their GitHub integrations.
+
+Deployment targets:
+
+- frontend: Vercel
+- backend: Render
+
+Set `VITE_API_BASE_URL` in GitHub Actions secrets if the frontend build needs to use the public Render backend URL.
+
+```text
+https://your-render-service.onrender.com
+```
+
+The frontend currently has a placeholder `npm test` script until frontend tests are added.
+
 #
 
 # LAZY TODO
@@ -271,3 +300,32 @@ PowerShell で `npm` が実行ポリシーにより止まる場合は、`npm.cmd
 ```bash
 npm.cmd run lint
 ```
+
+## CI/CD
+
+GitHub Actions で `main` への push と pull request 時に CI を実行します。
+
+CI で確認する内容:
+
+- frontend lint
+- frontend build
+- frontend test
+- backend `go test`
+- backend `gofmt` check
+- backend `go vet`
+- backend build
+
+CI が成功した pull request を `main` に merge すると、Vercel と Render の GitHub 連携によって自動デプロイされます。
+
+デプロイ先:
+
+- frontend: Vercel
+- backend: Render
+
+frontend build で Render の backend 公開 URL を使う場合は、GitHub Actions secrets に `VITE_API_BASE_URL` を設定します。
+
+```text
+https://your-render-service.onrender.com
+```
+
+frontend のテストが追加されるまでは、`npm test` は placeholder script です。
