@@ -162,7 +162,7 @@ Set `VITE_API_BASE_URL` in GitHub Actions secrets if the frontend build needs to
 https://your-render-service.onrender.com
 ```
 
-The frontend currently has a placeholder `npm test` script until frontend tests are added.
+Frontend tests can be added later with Vitest and React Testing Library.
 
 #
 
@@ -328,4 +328,4 @@ frontend build で Render の backend 公開 URL を使う場合は、GitHub Act
 https://your-render-service.onrender.com
 ```
 
-frontend のテストが追加されるまでは、`npm test` は placeholder script です。
+フロントエンドのテストは、今後 Vitest と React Testing Library で追加できます。
