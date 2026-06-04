@@ -20,22 +20,17 @@ A simple task manager focused on showing what to do next.
 
 ## Tech Stack
 
-Application:
-
-- React
-- React Router
-- Vite
-- Tailwind CSS
-- Go
-- Google Tasks API
-
-Infrastructure and tooling:
-
-- Docker
-- Docker Compose
-- nginx
-- ESLint
-- Prettier
+| Category | Technologies | Notes |
+| --- | --- | --- |
+| Frontend | React, React Router, Vite, Tailwind CSS | SPA |
+| Backend | Go | HTTP API / Google Tasks integration |
+| External API | Google Tasks API | OAuth |
+| Linter, Formatter | ESLint, Prettier | |
+| Local environment | Docker, Docker Compose, nginx | Runs frontend and backend together |
+| Code hosting | GitHub | |
+| CI | GitHub Actions | Runs on pushes to `main` and pull requests |
+| Deployment | Vercel, Render | frontend: Vercel / backend: Render |
+| CD | Vercel and Render GitHub integrations | Deploys after merging to `main` |
 
 ## Project Structure
 
@@ -186,24 +181,19 @@ Frontend tests can be added later with Vitest and React Testing Library.
 - 作成日順と期限順でタスクをソートできます
 - Google Tasks にタスクを追加できます
 
-## 技術スタック
+## 技術概要
 
-アプリケーション:
-
-- React
-- React Router
-- Vite
-- Tailwind CSS
-- Go
-- Google Tasks API
-
-インフラ・開発ツール:
-
-- Docker
-- Docker Compose
-- nginx
-- ESLint
-- Prettier
+| 種類 | 技術仕様 | 備考 |
+| --- | --- | --- |
+| フロントエンド | React, React Router, Vite, Tailwind CSS | SPA |
+| バックエンド | Go | HTTP API / Google Tasks 連携 |
+| 外部 API | Google Tasks API | OAuth |
+| Linter, Formatter | ESLint, Prettier | |
+| ローカル環境 | Docker, Docker Compose, nginx | frontend と backend をまとめて起動 |
+| コード管理 | GitHub | |
+| CI | GitHub Actions | `main` への push と pull request 時に実行 |
+| デプロイ | Vercel, Render | frontend: Vercel / backend: Render |
+| CD | Vercel と Render の GitHub 連携 | `main` への merge 後に自動デプロイ |
 
 ## プロジェクト構成
 
