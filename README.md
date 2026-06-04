@@ -156,7 +156,9 @@ Deployment targets:
 - frontend: Vercel
 - backend: Render
 
-Set `VITE_API_BASE_URL` in GitHub Actions secrets if the frontend build needs to use the public Render backend URL.
+CI builds the frontend with the default value in `frontend/.env`.
+
+For production deployment, set `VITE_API_BASE_URL` in the Vercel project environment variables so the frontend calls the public Render backend URL.
 
 ```text
 https://your-render-service.onrender.com
@@ -322,7 +324,9 @@ CI が成功した pull request を `main` に merge すると、Vercel と Rend
 - frontend: Vercel
 - backend: Render
 
-frontend build で Render の backend 公開 URL を使う場合は、GitHub Actions secrets に `VITE_API_BASE_URL` を設定します。
+CI の frontend build では、`frontend/.env` の既定値を使います。
+
+本番デプロイでは、frontend が Render の backend 公開 URL を呼び出せるように、Vercel プロジェクトの環境変数に `VITE_API_BASE_URL` を設定します。
 
 ```text
 https://your-render-service.onrender.com
