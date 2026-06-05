@@ -26,6 +26,7 @@ A simple task manager focused on showing what to do next.
 | Backend | Go | HTTP API / Google Tasks integration |
 | External API | Google Tasks API | OAuth |
 | Linter, Formatter | ESLint, Prettier | |
+| Testing | Vitest | Unit test |
 | Local environment | Docker, Docker Compose, nginx | Runs frontend and backend together |
 | Code hosting | GitHub | |
 | CI | GitHub Actions | Runs on pushes to `main` and pull requests |
@@ -137,8 +138,8 @@ GitHub Actions runs CI on pushes to `main` and on pull requests.
 CI checks:
 
 - frontend lint
-- frontend build
 - frontend test
+- frontend build
 - backend `go test`
 - backend `gofmt` check
 - backend `go vet`
@@ -159,7 +160,7 @@ For production deployment, set `VITE_API_BASE_URL` in the Vercel project environ
 https://your-render-service.onrender.com
 ```
 
-Frontend tests can be added later with Vitest and React Testing Library.
+Frontend unit tests run with Vitest.
 
 #
 
@@ -189,6 +190,7 @@ Frontend tests can be added later with Vitest and React Testing Library.
 | バックエンド | Go | HTTP API / Google Tasks 連携 |
 | 外部 API | Google Tasks API | OAuth |
 | Linter, Formatter | ESLint, Prettier | |
+| テスト | Vitest | 単体テスト |
 | ローカル環境 | Docker, Docker Compose, nginx | frontend と backend をまとめて起動 |
 | コード管理 | GitHub | |
 | CI | GitHub Actions | `main` への push と pull request 時に実行 |
@@ -300,8 +302,8 @@ GitHub Actions で `main` への push と pull request 時に CI を実行しま
 CI で確認する内容:
 
 - frontend lint
-- frontend build
 - frontend test
+- frontend build
 - backend `go test`
 - backend `gofmt` check
 - backend `go vet`
@@ -322,4 +324,4 @@ CI の frontend build では、`frontend/.env` の既定値を使います。
 https://your-render-service.onrender.com
 ```
 
-フロントエンドのテストは、今後 Vitest と React Testing Library で追加できます。
+フロントエンドの unit test は Vitest で実行します。

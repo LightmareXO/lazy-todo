@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import Sidebar from "../components/Sidebar/Sidebar";
 import { useEffect, useState } from "react";
 import { uuidv7 } from "uuidv7";
+import { sortTasks } from "../lib/tasks";
 
 function MainLayout() {
   const [tasks, setTasks] = useState(() => {
@@ -83,15 +84,7 @@ function MainLayout() {
     });
   };
 
-  const sortedTasks = [...tasks].sort((a, b) => {
-    if (sortMode === "created") return a.id.localeCompare(b.id);
-    if (sortMode === "dueDate") {
-      if (a.dueDate === b.dueDate) return a.dueTime.localeCompare(b.dueTime);
-      return a.dueDate.localeCompare(b.dueDate);
-    }
-
-    return 0;
-  });
+  const sortedTasks = sortTasks(tasks, sortMode);
 
   const editTask = (id, taskName, taskDueDate, taskDueTime) => {
     setTasks(

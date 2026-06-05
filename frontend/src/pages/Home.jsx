@@ -4,6 +4,7 @@ import EditTaskModal from "../components/EditTask/EditTaskModal";
 import SortButton from "../components/SortButton";
 import { useState } from "react";
 import { useOutletContext } from "react-router-dom";
+import { getIncompleteTaskAt, getNextIncompleteTask } from "../lib/tasks";
 
 function Home() {
   const {
@@ -21,8 +22,8 @@ function Home() {
   const openModal = () => setIsOpenModal(true);
   const closeModal = () => setIsOpenModal(false);
 
-  const nextTask = sortedTasks.filter((task) => !task.completed)[0];
-  const nextNextTask = sortedTasks.filter((task) => !task.completed)[1];
+  const nextTask = getNextIncompleteTask(sortedTasks);
+  const nextNextTask = getIncompleteTaskAt(sortedTasks, 1);
 
   const handleDelete = (task) => {
     const shouldDelete = window.confirm(`Delete "${task.name}"?`);

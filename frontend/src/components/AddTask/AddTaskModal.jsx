@@ -1,47 +1,23 @@
 import { useState } from "react";
 import Modal from "react-modal";
+import {
+  getTodayDateString,
+  getTomorrowDateString,
+  toTimeString,
+  validateTaskInput,
+} from "../../lib/taskValidation";
 
 Modal.setAppElement("#root");
 
 function AddTaskModal({ onAddTask, isOpenModal, onCloseModal }) {
-  const getTomorrowString = () => {
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-
-    const year = tomorrow.getFullYear();
-    const month = String(tomorrow.getMonth() + 1).padStart(2, "0");
-    const date = String(tomorrow.getDate()).padStart(2, "0");
-
-    return `${year}-${month}-${date}`;
-  };
-
-  const getTodayString = () => {
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate());
-
-    const year = tomorrow.getFullYear();
-    const month = String(tomorrow.getMonth() + 1).padStart(2, "0");
-    const date = String(tomorrow.getDate()).padStart(2, "0");
-
-    return `${year}-${month}-${date}`;
-  };
-
-  const getNowString = () => {
-    const now = new Date();
-    const hour = String(now.getHours()).padStart(2, "0");
-    const minute = String(now.getMinutes()).padStart(2, "0");
-
-    return `${hour}:${minute}`;
-  };
-
   const [taskName, setTaskName] = useState("");
-  const [taskDueDate, setTaskDueDate] = useState(getTomorrowString());
+  const [taskDueDate, setTaskDueDate] = useState(getTomorrowDateString());
   const [taskDueTime, setTaskDueTime] = useState("23:59");
   const [errorMessage, setErrorMessage] = useState("");
 
   const closeModal = () => {
     setTaskName("");
-    setTaskDueDate(getTomorrowString());
+    setTaskDueDate(getTomorrowDateString());
     setTaskDueTime("23:59");
     setErrorMessage("");
     onCloseModal();
@@ -50,32 +26,23 @@ function AddTaskModal({ onAddTask, isOpenModal, onCloseModal }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const trimmedTaskName = taskName.trim();
-    const trimmedTaskDue = taskDueDate.trim();
-    const trimmedTaskTime = taskDueTime.trim();
-    if (
-      trimmedTaskName === "" ||
-      trimmedTaskDue === "" ||
-      trimmedTaskTime === ""
-    ) {
-      setErrorMessage("Please fill in all fields");
+    const result = validateTaskInput({
+      name: taskName,
+      dueDate: taskDueDate,
+      dueTime: taskDueTime,
+    });
+
+    if (!result.isValid) {
+      setErrorMessage(result.errorMessage);
       return;
     }
 
-    if (
-      trimmedTaskDue < getTodayString() ||
-      (trimmedTaskDue === getTodayString() && trimmedTaskTime < getNowString())
-    ) {
-      setErrorMessage("Please select a future date and time");
-      return;
-    }
-
-    onAddTask(trimmedTaskName, trimmedTaskDue, trimmedTaskTime);
+    onAddTask(result.task.name, result.task.dueDate, result.task.dueTime);
     closeModal();
   };
 
-  const tomorrow = new Date();
-  tomorrow.setDate(tomorrow.getDate() + 1);
+  const todayDate = getTodayDateString();
+  const currentTime = toTimeString(new Date());
 
   return (
     <>
@@ -102,7 +69,7 @@ function AddTaskModal({ onAddTask, isOpenModal, onCloseModal }) {
             <input
               className="mt-2 w-40 rounded-md border border-gray-300 px-3 py-2 outline-none focus:border-gray-700"
               type="date"
-              min={getTodayString()}
+              min={todayDate}
               value={taskDueDate}
               onChange={(e) => setTaskDueDate(e.target.value)}
               required
@@ -111,7 +78,7 @@ function AddTaskModal({ onAddTask, isOpenModal, onCloseModal }) {
               className="mt-2 ml-2 w-40 rounded-md border border-gray-300 px-3 py-2 outline-none focus:border-gray-700"
               type="time"
               value={taskDueTime}
-              min={taskDueDate === getTodayString() ? getNowString() : "00:00"}
+              min={taskDueDate === todayDate ? currentTime : "00:00"}
               onChange={(e) => setTaskDueTime(e.target.value)}
               required
             />
