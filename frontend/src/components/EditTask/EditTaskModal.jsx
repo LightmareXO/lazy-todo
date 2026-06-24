@@ -14,7 +14,7 @@ export default function EditTaskModal({ inEditing, editTask, setInEditing }) {
         <Modal
           isOpen={inEditing !== null}
           onRequestClose={closeModal}
-          className="mx-4 w-full max-w-md rounded-lg bg-white p-6 shadow-xl outline-none"
+          className="mx-4 w-full max-w-md rounded-lg bg-surface p-6 text-primary shadow-xl outline-none"
           overlayClassName="fixed inset-0 z-50 flex items-center justify-center bg-black/40"
         >
           {inEditing && (

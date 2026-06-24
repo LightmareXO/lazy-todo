@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
 import Sidebar from "../components/Sidebar/Sidebar";
+import ThemeToggle from "../components/ThemeToggle";
 import { useEffect, useState } from "react";
 import { uuidv7 } from "uuidv7";
 import { sortTasks } from "../lib/tasks";
@@ -29,10 +30,10 @@ function MainLayout() {
     const savedSettings = JSON.parse(localStorage.getItem("settings"));
 
     if (savedSettings) {
-      return JSON.parse(localStorage.getItem("settings"));
+      return { sortMode: "dueDate", theme: "light", ...savedSettings };
     }
 
-    return { sortMode: "dueDate" };
+    return { sortMode: "dueDate", theme: "light" };
   });
 
   const sortMode = settings.sortMode;
@@ -44,6 +45,22 @@ function MainLayout() {
   useEffect(() => {
     localStorage.setItem("settings", JSON.stringify(settings));
   }, [settings]);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const applyTheme = () => {
+      const isDark =
+        settings.theme === "dark" ||
+        (settings.theme === "system" && mediaQuery.matches);
+
+      document.documentElement.classList.toggle("dark", isDark);
+    };
+
+    applyTheme();
+    mediaQuery.addEventListener("change", applyTheme);
+
+    return () => mediaQuery.removeEventListener("change", applyTheme);
+  }, [settings.theme]);
 
   const addTask = (taskName, taskDueDate, taskDueTime) => {
     if (taskName.trim() === "") return;
@@ -84,6 +101,19 @@ function MainLayout() {
     });
   };
 
+  const setTheme = (theme) => {
+    setSettings((prev) => ({ ...prev, theme }));
+  };
+
+  const isDark =
+    settings.theme === "dark" ||
+    (settings.theme === "system" &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches);
+
+  const toggleTheme = () => {
+    setTheme(isDark ? "light" : "dark");
+  };
+
   const sortedTasks = sortTasks(tasks, sortMode);
 
   const editTask = (id, taskName, taskDueDate, taskDueTime) => {
@@ -102,9 +132,10 @@ function MainLayout() {
   };
 
   return (
-    <div className="flex min-h-screen">
+    <div className="flex min-h-screen bg-page text-primary">
       <Sidebar />
-      <main className="flex-1 p-4">
+      <main className="relative flex-1 p-4">
+        <ThemeToggle isDark={isDark} onToggle={toggleTheme} />
         <Outlet
           context={{
             tasks,
@@ -116,6 +147,8 @@ function MainLayout() {
             sortedTasks,
             sortMode,
             toggleSortMode,
+            theme: settings.theme,
+            setTheme,
           }}
         />
       </main>

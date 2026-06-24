@@ -1,6 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Kosugi+Maru&family=Noto+Sans+JP:wght@100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer components {
   .testbtn {
     @apply border hover:bg-gray-200 active:bg-gray-300;
@@ -13,8 +15,61 @@
   --font-nunito: "Nunito", sans-serif;
 }
 
+@theme inline {
+  --color-page: var(--app-color-page);
+  --color-surface: var(--app-color-surface);
+  --color-surface-input: var(--app-color-surface-input);
+  --color-surface-menu: var(--app-color-surface-menu);
+  --color-surface-sidebar: var(--app-color-surface-sidebar);
+  --color-primary: var(--app-color-text-primary);
+  --color-secondary: var(--app-color-text-secondary);
+  --color-sidebar: var(--app-color-text-sidebar);
+  --color-border-default: var(--app-color-border-default);
+}
+
+:root {
+  --app-color-page: #ffffff;
+  --app-color-surface: #ffffff;
+  --app-color-surface-input: #ffffff;
+  --app-color-surface-menu: #ffffff;
+  --app-color-surface-sidebar: var(--color-gray-200);
+  --app-color-text-primary: var(--color-gray-900);
+  --app-color-text-secondary: var(--color-gray-500);
+  --app-color-text-sidebar: var(--color-gray-800);
+  --app-color-border-default: var(--color-gray-300);
+}
+
+.dark {
+  --app-color-page: var(--color-gray-900);
+  --app-color-surface: var(--color-gray-800);
+  --app-color-surface-input: var(--color-gray-800);
+  --app-color-surface-menu: var(--color-gray-800);
+  --app-color-surface-sidebar: var(--color-gray-800);
+  --app-color-text-primary: var(--color-gray-100);
+  --app-color-text-secondary: var(--color-gray-400);
+  --app-color-text-sidebar: var(--color-gray-300);
+  --app-color-border-default: var(--color-gray-700);
+}
+
+input[type="date"],
+input[type="time"],
+select {
+  color-scheme: light;
+}
+
+.dark input[type="date"],
+.dark input[type="time"],
+.dark select {
+  color-scheme: dark;
+}
+
 @layer base {
   html {
     @apply font-nunito;
+  }
+
+  body {
+    background-color: var(--app-color-page);
+    color: var(--app-color-text-primary);
   }
 }

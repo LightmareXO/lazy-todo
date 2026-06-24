@@ -27,7 +27,7 @@ function Incomplete() {
   return (
     <>
       <h1 className="text-3xl">Incomplete</h1>
-      <div className="py-2 border-b border-gray-400">
+      <div className="py-2 border-b border-gray-400 dark:border-gray-600">
         <SortButton sortMode={sortMode} toggleSortMode={toggleSortMode} />
       </div>
       <div>

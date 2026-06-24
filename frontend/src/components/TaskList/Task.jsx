@@ -49,7 +49,7 @@ const Task = ({ task, deleteTask, toggleTask, setInEditing }) => {
 
   return (
     <>
-      <div className="p-2 my-4 border border-gray-400 rounded-lg">
+      <div className="p-2 my-4 border border-border-default rounded-lg">
         <div
           className={`relative grid items-center gap-3 rounded-lg ${
             task.completed
@@ -59,21 +59,21 @@ const Task = ({ task, deleteTask, toggleTask, setInEditing }) => {
         >
           {!task.completed && (
             <button
-              className="items-center bg-transparent text-gray-200 font-bold hover:text-gray-700 h-6 w-6 text-sm pt-0.5 pr-0.5 border border-gray-600 rounded-full hover:cursor-pointer"
+              className="items-center bg-transparent text-gray-200 font-bold hover:text-gray-700 h-6 w-6 text-sm pt-0.5 pr-0.5 border border-gray-600 rounded-full hover:cursor-pointer dark:text-gray-700 dark:hover:text-gray-200 dark:border-gray-400"
               onClick={() => toggleTask(task.id)}
             >
               ✔
             </button>
           )}
 
-          <div className="px-5 min-w-0 text-lg font-bold text-gray-800 truncate">
+          <div className="px-5 min-w-0 text-lg font-bold text-primary truncate">
             {task.name}
           </div>
 
           <div>
-            <span className=" text-gray-500">Due:</span>
-            <span className="ml-5 text-gray-500">{task.dueDate}</span>
-            <span className="ml-5 text-gray-500">{task.dueTime}</span>
+            <span className=" text-secondary">Due:</span>
+            <span className="ml-5 text-secondary">{task.dueDate}</span>
+            <span className="ml-5 text-secondary">{task.dueTime}</span>
           </div>
 
           <div
@@ -85,11 +85,11 @@ const Task = ({ task, deleteTask, toggleTask, setInEditing }) => {
             </span>
 
             {isMenuOpen && (
-              <div className="absolute right-3 top-8 z-10 w-28 border rounded-md border-gray-300 bg-white shadow">
+              <div className="absolute right-3 top-8 z-10 w-28 border rounded-md border-border-default bg-surface-menu shadow">
                 {task.completed && (
                   <button
                     type="button"
-                    className="block w-full px-3 py-2 text-left hover:bg-gray-200 border-b border-gray-300 active:bg-gray-300"
+                    className="block w-full px-3 py-2 text-left hover:bg-gray-200 border-b border-gray-300 active:bg-gray-300 dark:border-gray-700 dark:hover:bg-gray-700 dark:active:bg-gray-600"
                     onClick={() => {
                       setIsMenuOpen(false);
                       toggleTask(task.id);
@@ -102,7 +102,7 @@ const Task = ({ task, deleteTask, toggleTask, setInEditing }) => {
                 {!task.completed && (
                   <button
                     type="button"
-                    className="block w-full px-3 py-2 hover:bg-gray-200 border-b border-gray-300 active:bg-gray-300"
+                    className="block w-full px-3 py-2 hover:bg-gray-200 border-b border-gray-300 active:bg-gray-300 dark:border-gray-700 dark:hover:bg-gray-700 dark:active:bg-gray-600"
                     onClick={() => addToGoogleTasks(task)}
                   >
                     To Google Calendar
@@ -111,7 +111,7 @@ const Task = ({ task, deleteTask, toggleTask, setInEditing }) => {
 
                 <button
                   type="button"
-                  className="block w-full px-3 py-2 text-left hover:bg-gray-200 border-b border-gray-300 active:bg-gray-300"
+                  className="block w-full px-3 py-2 text-left hover:bg-gray-200 border-b border-gray-300 active:bg-gray-300 dark:border-gray-700 dark:hover:bg-gray-700 dark:active:bg-gray-600"
                   onClick={() => {
                     setIsMenuOpen(false);
                     setInEditing(task);
@@ -122,7 +122,7 @@ const Task = ({ task, deleteTask, toggleTask, setInEditing }) => {
 
                 <button
                   type="button"
-                  className="block w-full px-3 py-2 text-left text-red-400 hover:bg-gray-200 active:bg-gray-300"
+                  className="block w-full px-3 py-2 text-left text-red-400 hover:bg-gray-200 active:bg-gray-300 dark:hover:bg-gray-700 dark:active:bg-gray-600"
                   onClick={handleDelete}
                 >
                   Delete

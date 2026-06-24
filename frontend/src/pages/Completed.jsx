@@ -28,10 +28,10 @@ function Completed() {
   return (
     <>
       <h1 className="text-3xl">Completed</h1>
-      <div className="py-2 border-b border-gray-400">
+      <div className="py-2 border-b border-gray-400 dark:border-gray-600">
         <SortButton sortMode={sortMode} toggleSortMode={toggleSortMode} />
         <button
-          className="border rounded-full ml-6 border-red-400 text-red-400 w-9 h-9 hover:bg-gray-200 active:bg-gray-300"
+          className="border rounded-full ml-6 border-red-400 text-red-400 w-9 h-9 hover:bg-gray-200 active:bg-gray-300 dark:hover:bg-gray-800 dark:active:bg-gray-700"
           onClick={() => {
             const shouldDelete =
               window.confirm("完了したタスクを全て削除しますか？");

@@ -17,9 +17,9 @@ function Sidebar() {
   }, []);
 
   return (
-    <div className="md:w-50 w-15 h-screen bg-gray-200 text-gray-800 select-none">
-      <div className="flex justify-center items-center gap-4 border-b border-gray-500 py-5">
-        <img src="/favicon.svg" className="h-8 w-8" />
+    <div className="md:w-50 w-15 h-screen select-none bg-surface-sidebar text-sidebar">
+      <div className="flex justify-center items-center gap-4 border-b border-gray-500 py-5 dark:border-gray-700">
+        <img src="/favicon.svg" className="h-8 w-8 dark:invert" />
         {windowWidth >= 768 && (
           <span className="font-bold tracking-wide">LAZY TODO</span>
         )}
@@ -31,7 +31,7 @@ function Sidebar() {
           return (
             <li
               key={key}
-              className={`flex not-md:justify-center px-2 py-2 rounded-md cursor-pointer ${isActive ? "bg-gray-300 active:bg-gray-300" : "hover:bg-gray-300 active:bg-gray-400"}`}
+              className={`flex not-md:justify-center px-2 py-2 rounded-md cursor-pointer ${isActive ? "bg-gray-300 active:bg-gray-300 dark:bg-gray-700 dark:active:bg-gray-700" : "hover:bg-gray-300 active:bg-gray-400 dark:hover:bg-gray-800 dark:active:bg-gray-700"}`}
               onClick={() => navigate(value.path)}
             >
               <i className={value.icon} />

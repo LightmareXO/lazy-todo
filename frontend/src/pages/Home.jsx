@@ -37,16 +37,16 @@ function Home() {
       <SortButton sortMode={sortMode} toggleSortMode={toggleSortMode} />
       <div className="py-4 space-y-40">
         {nextTask ? (
-          <div className="relative grid grid-cols-[minmax(0,70%)_30%] gap-4 rounded-lg border border-gray-300 bg-white p-6 shadow">
+          <div className="relative grid grid-cols-[minmax(0,70%)_30%] gap-4 rounded-lg border border-border-default bg-surface p-6 shadow">
             <div className="min-w-0">
-              <p className="text-sm text-gray-500">Next task:</p>
+              <p className="text-sm text-secondary">Next task:</p>
 
-              <h1 className="mt-2 max-w-full text-3xl font-bold text-gray-900 break-all">
+              <h1 className="mt-2 max-w-full text-3xl font-bold text-primary break-all">
                 {nextTask.name}
               </h1>
 
-              <div className="mt-4 text-sm text-gray-500">Due: </div>
-              <div className="flex gap-4 text-gray-600">
+              <div className="mt-4 text-sm text-secondary">Due: </div>
+              <div className="flex gap-4 text-secondary">
                 <span>{nextTask.dueDate}</span>
                 <span>{nextTask.dueTime}</span>
               </div>
@@ -56,19 +56,19 @@ function Home() {
               <div className="flex h-full mr-5 items-center justify-end">
                 <button
                   onClick={() => toggleTask(nextTask.id)}
-                  className="shrink-0 rounded-full border border-gray-400 px-5 py-3 hover:bg-gray-200 active:bg-gray-300 hover:cursor-pointer"
+                  className="shrink-0 rounded-full border border-border-default px-5 py-3 hover:bg-gray-200 active:bg-gray-300 hover:cursor-pointer dark:hover:bg-gray-800 dark:active:bg-gray-700"
                 >
                   Done!
                 </button>
               </div>
               <button
-                className="absolute bottom-2 right-2 hover:bg-gray-200 active:bg-gray-300 h-7 w-7 rounded-full hover:cursor-pointer"
+                className="absolute bottom-2 right-2 hover:bg-gray-200 active:bg-gray-300 h-7 w-7 rounded-full hover:cursor-pointer dark:hover:bg-gray-800 dark:active:bg-gray-700"
                 onClick={() => handleDelete(nextTask)}
               >
                 <i className="ri-delete-bin-line"></i>
               </button>
               <button
-                className="absolute bottom-2 right-10 hover:bg-gray-200 active:bg-gray-300 h-7 w-7 rounded-full hover:cursor-pointer"
+                className="absolute bottom-2 right-10 hover:bg-gray-200 active:bg-gray-300 h-7 w-7 rounded-full hover:cursor-pointer dark:hover:bg-gray-800 dark:active:bg-gray-700"
                 onClick={() => setInEditing(nextTask)}
               >
                 <i className="ri-edit-line"></i>
@@ -76,8 +76,8 @@ function Home() {
             </div>
           </div>
         ) : (
-          <div className="rounded-lg border border-gray-300 bg-white p-6 shadow">
-            <h1 className="text-3xl text-center font-bold text-gray-900">
+          <div className="rounded-lg border border-border-default bg-surface p-6 shadow">
+            <h1 className="text-3xl text-center font-bold text-primary">
               All completed!
             </h1>
           </div>
@@ -85,7 +85,7 @@ function Home() {
       </div>
 
       {nextTask && (
-        <div className="flex justify-end text-gray-400">
+        <div className="flex justify-end text-secondary">
           <span>Next up:</span>
           <span className="mx-2">
             {nextNextTask ? nextNextTask.name : "None"}
